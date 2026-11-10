@@ -209,6 +209,25 @@ function chooseSelfGrade(outcome){
   $('#progress-fill').style.width=`${(session.index+1)/session.questions.length*100}%`;
 }
 
+
+function nextQuestion(){
+  if(!session.graded)return;
+  if(session.index+1<session.questions.length){
+    session.index++;
+    showQuestion();
+    return;
+  }
+  $('#question-panel').classList.add('hidden');
+  $('#complete-panel').classList.remove('hidden');
+  const rate=session.total?Math.round(session.correct/session.total*100):0;
+  $('#session-correct').textContent=session.correct;
+  $('#session-total').textContent=session.total;
+  $('#session-rate').textContent=`${rate}%`;
+  $('#complete-subtitle').textContent=session.mode==='review'
+    ?'復習セッションが完了しました。お疲れさまでした。'
+    :'今日の学習を記録しました。お疲れさまでした。';
+}
+
 // Navigation and view actions
 $$('.nav-item[data-view]').forEach(btn=>btn.addEventListener('click',()=>navigate(btn.dataset.view)));
 $$('[data-go]').forEach(btn=>btn.addEventListener('click',()=>navigate(btn.dataset.go)));
