@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f6fb" />
+  <title>Grammar Lab | 英語文法トレーニング</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">メインコンテンツへスキップ</a>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home" aria-label="Grammar Lab ホーム">
+        <span class="brand-mark">G<span>.</span></span>
+        <span><strong>Grammar Lab</strong><small>ENGLISH TRAINING</small></span>
+      </a>
+      <div class="side-label">MENU</div>
+      <nav class="side-nav" aria-label="メインメニュー">
+        <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>ホーム</button>
+        <button class="nav-item" data-view="study"><span class="nav-icon">↗</span>テストする</button>
+        <button class="nav-item" data-view="library"><span class="nav-icon">▤</span>文法ノート</button>
+        <button class="nav-item" data-view="calendar"><span class="nav-icon">▦</span>学習カレンダー</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-label">YOUR SPACE</div>
+        <button class="nav-item" id="settings-open"><span class="nav-icon">⚙</span>設定・データ</button>
+        <div class="sidebar-note"><span class="status-dot"></span><span id="ai-status-side">自己採点モード</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content" tabindex="-1">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">G<span>.</span></span><strong>Grammar Lab</strong></div>
+        <div class="breadcrumb" id="breadcrumb">YOUR LEARNING SPACE <span>/</span> ホーム</div>
+        <div class="topbar-right"><span class="today-label" id="today-label"></span><button class="avatar" aria-label="設定" id="settings-avatar">GL</button></div>
+      </header>
+
+      <section class="view active" id="view-home">
+        <div class="welcome-row">
+          <div><p class="eyebrow">YOUR PROGRESS, YOUR PACE</p><h1>英語を、<span class="accent-text">使える知識</span>に。</h1><p class="subheading">覚えるだけで終わらせず、自分の言葉で答えて定着させよう。</p></div>
+          <div class="welcome-art" aria-hidden="true"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><span class="art-letter">Aa</span><span class="art-spark">✳</span></div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>登録した文法</span><span class="stat-icon purple">▤</span></div><div class="stat-value" id="stat-items">0</div><div class="stat-caption">学習できる問題数</div></article>
+          <article class="stat-card"><div class="stat-top"><span>学習した日数</span><span class="stat-icon orange">▦</span></div><div class="stat-value" id="stat-days">0<span class="stat-unit">日</span></div><div class="stat-caption">積み重ねた日数</div></article>
+          <article class="stat-card"><div class="stat-top"><span>これまでの回答</span><span class="stat-icon green">✎</span></div><div class="stat-value" id="stat-attempts">0</div><div class="stat-caption">タイピングした回数</div></article>
+          <article class="stat-card"><div class="stat-top"><span>正答率</span><span class="stat-icon blue">◎</span></div><div class="stat-value" id="stat-accuracy">—</div><div class="stat-caption">自分で確認した結果を記録</div></article>
+        </div>
+
+        <div class="home-grid">
+          <section class="panel quick-panel">
+            <div class="panel-heading"><div><p class="eyebrow">START PRACTICING</p><h2>今日のトレーニング</h2></div><span class="heading-symbol">✦</span></div>
+            <p class="muted">日本語から英語へ、英語から日本語へ。選択肢に頼らず、自分で入力し、解答を見比べて確認しよう。</p>
+            <div class="direction-cards">
+              <button class="direction-card" data-start-direction="ja-en"><span class="direction-icon">あ<span>→</span>A</span><span><strong>日本語 → 英語</strong><small>日本語を見て英文を入力</small></span><span class="arrow">↗</span></button>
+              <button class="direction-card" data-start-direction="en-ja"><span class="direction-icon">A<span>→</span>あ</span><span><strong>英語 → 日本語</strong><small>英文を見て日本語を入力</small></span><span class="arrow">↗</span></button>
+              <button class="direction-card mixed" data-start-direction="mixed"><span class="direction-icon">A<span>⇄</span>あ</span><span><strong>ミックス</strong><small>2つの方向からランダム出題</small></span><span class="arrow">↗</span></button>
+            </div>
+            <button class="text-button" data-go="study">テスト設定を開く <span>→</span></button>
+            <button class="review-shortcut" id="home-review-button" type="button" disabled>
+              <span class="review-shortcut-icon" aria-hidden="true">↻</span>
+              <span class="review-shortcut-copy"><strong>間違えた問題を復習</strong><small>苦手な問題を優先してもう一度解く</small></span>
+              <span class="review-count" id="home-review-count">0問</span>
+            </button>
+          </section>
+          <section class="panel calendar-mini-panel">
+            <div class="panel-heading"><div><p class="eyebrow">CONSISTENCY</p><h2>学習カレンダー</h2></div><button class="mini-link" data-go="calendar">すべて見る →</button></div>
+            <div class="mini-calendar" id="mini-calendar"></div>
+            <div class="calendar-legend"><span><i class="legend-dot done"></i>学習した日</span><span><i class="legend-dot today"></i>今日</span></div>
+          </section>
+        </div>
+
+        <section class="panel recent-panel">
+          <div class="panel-heading"><div><p class="eyebrow">YOUR LIBRARY</p><h2>最近追加した文法</h2></div><button class="mini-link" data-go="library">文法ノートへ →</button></div>
+          <div id="recent-list" class="recent-list"></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-study">
+        <div class="page-heading"><div><p class="eyebrow">ACTIVE RECALL</p><h1>タイピングテスト</h1><p class="subheading">回答を入力したら模範解答を表示し、自分で正解・不正解を判断します。</p></div></div>
+        <div class="study-layout">
+          <section class="panel study-settings" id="study-settings">
+            <p class="eyebrow">01 / SET UP</p><h2>テストを設定</h2>
+            <label class="field-label" for="study-mode">出題モード</label>
+            <select id="study-mode" class="field-input"><option value="normal">通常テスト</option><option value="review">復習モード（間違えた問題を優先）</option></select>
+            <p class="review-queue-status" id="review-queue-status" role="status" aria-live="polite">復習対象はありません。通常テストで間違えた問題がここに追加されます。</p>
+            <label class="field-label" for="study-direction">出題方向</label>
+            <select id="study-direction" class="field-input"><option value="ja-en">日本語 → 英語</option><option value="en-ja">英語 → 日本語</option><option value="mixed">ミックス</option></select>
+            <label class="field-label" for="study-count">問題数</label>
+            <select id="study-count" class="field-input"><option value="5">5問</option><option value="10" selected>10問</option><option value="15">15問</option><option value="all">登録済みすべて</option></select>
+            <div class="setting-summary"><span class="summary-check">✓</span><span><strong>選択肢なし</strong><small>すべてキーボードで回答します。</small></span></div>
+            <button class="primary-button full-button" id="start-study">テストを開始 <span>→</span></button>
+            <p class="tiny-note">登録済みの文法が1件以上必要です。</p>
+          </section>
+
+          <section class="panel question-panel hidden" id="question-panel">
+            <div class="question-top"><div><p class="eyebrow" id="question-direction-label">日本語 → 英語</p><div class="question-progress" id="question-progress" aria-live="polite">QUESTION 01 / 10</div></div><button class="quiet-button" id="quit-study">終了する ✕</button></div>
+            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            <div class="question-card"><span class="question-tag" id="question-tag">現在完了</span><h2 id="question-text">彼女は3年間ずっとここに住んでいます。</h2><p class="question-hint" id="question-hint">意味が自然に伝わる英文で答えてください。</p></div>
+            <label class="field-label" for="answer-input" id="answer-label">YOUR ANSWER / 英語で入力</label>
+            <textarea id="answer-input" class="answer-input" rows="3" placeholder="ここに回答を入力..." autocomplete="off" spellcheck="false"></textarea>
+            <div class="answer-actions"><span class="keyboard-hint">入力後に解答を表示して、自分で確認します。</span><button class="primary-button" id="submit-answer">解答を表示する <span>→</span></button></div>
+            <section class="model-answer-panel hidden" id="model-answer-panel" aria-live="polite">
+              <p class="model-answer-heading">模範解答・別解</p>
+              <ol class="model-answer-list" id="model-answer-list"></ol>
+              <div class="model-explanation hidden" id="model-explanation"></div>
+              <p class="self-grade-prompt">自分の回答と見比べて、結果を選んでください。</p>
+              <div class="self-grade-actions">
+                <button type="button" class="grade-choice grade-correct" data-grade="correct">正解</button>
+                <button type="button" class="grade-choice grade-incorrect" data-grade="incorrect">不正解</button>
+                <button type="button" class="grade-choice grade-review" data-grade="review">要復習</button>
+              </div>
+            </section>
+            <div class="result-panel hidden" id="result-panel" aria-live="polite"></div>
+            <div class="after-actions hidden" id="after-actions"><button class="primary-button" id="next-question">次の問題へ <span>→</span></button></div>
+          </section>
+
+          <section class="panel complete-panel hidden" id="complete-panel">
+            <div class="complete-icon">✓</div><p class="eyebrow">SESSION COMPLETE</p><h2>トレーニング完了！</h2><p class="muted" id="complete-subtitle">今日の学習を記録しました。お疲れさまでした。</p>
+            <div class="complete-stats"><div><strong id="session-correct">0</strong><span>正解</span></div><div><strong id="session-total">0</strong><span>回答</span></div><div><strong id="session-rate">0%</strong><span>正答率</span></div></div>
+            <button class="primary-button" id="back-home">ホームに戻る <span>→</span></button>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-library">
+        <div class="page-heading library-heading"><div><p class="eyebrow">BUILD YOUR KNOWLEDGE</p><h1>文法ノート</h1><p class="subheading">自分が学んだ文法や例文を自由に登録できます。</p></div><button class="primary-button" id="add-grammar-open">＋ 文法を追加</button></div>
+        <div class="library-tools"><div class="search-wrap"><span>⌕</span><input type="search" id="library-search" placeholder="文法名・例文で検索" /></div><span class="library-count" id="library-count">0 ITEMS</span></div>
+        <div class="grammar-grid" id="grammar-grid"></div>
+        <div class="empty-state hidden" id="library-empty"><div class="empty-icon">＋</div><h3>まだ文法が登録されていません</h3><p>学んだ文法や例文を追加して、自分だけの問題集を作りましょう。</p><button class="primary-button" data-action="add-grammar">最初の文法を追加</button></div>
+      </section>
+
+      <section class="view" id="view-calendar">
+        <div class="page-heading"><div><p class="eyebrow">KEEP YOUR MOMENTUM</p><h1>学習カレンダー</h1><p class="subheading">回答した日が自動で記録されます。</p></div></div>
+        <div class="calendar-page-grid">
+          <section class="panel full-calendar-panel"><div class="calendar-header"><div><p class="eyebrow">STUDY LOG</p><h2 id="calendar-month-title">2026年11月</h2></div><div class="month-controls"><button id="month-prev" aria-label="前の月">‹</button><button id="month-next" aria-label="次の月">›</button></div></div><div class="full-calendar" id="full-calendar"></div><div class="calendar-legend"><span><i class="legend-dot done"></i>学習した日</span><span><i class="legend-dot today"></i>今日</span></div></section>
+          <section class="panel calendar-detail-panel"><p class="eyebrow">DAILY RECORD</p><h2 id="selected-date-title">日付を選択</h2><div id="selected-date-detail" class="selected-date-detail"><div class="empty-icon small">▦</div><p>カレンダーの日付を選ぶと、その日の学習記録が表示されます。</p></div><div class="monthly-summary"><span>今月の学習日数</span><strong id="month-study-days">0日</strong></div></section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="grammar-modal" role="dialog" aria-modal="true" aria-labelledby="grammar-modal-title">
+    <div class="modal-card wide-modal"><div class="modal-header"><div><p class="eyebrow">ADD TO YOUR LIBRARY</p><h2 id="grammar-modal-title">文法を追加</h2></div><button class="icon-button" data-close="grammar-modal" aria-label="閉じる">×</button></div>
+      <form id="grammar-form">
+        <input type="hidden" id="grammar-id" />
+        <label class="field-label" for="grammar-title">文法名・テーマ <span class="required">必須</span></label><input class="field-input" id="grammar-title" maxlength="60" placeholder="例：現在完了（継続）" required />
+        <div class="form-two-columns"><div><label class="field-label" for="prompt-ja">日本語の問題文 <span class="required">必須</span></label><textarea class="field-input form-textarea" id="prompt-ja" rows="3" placeholder="例：私は3年間ここに住んでいます。" required></textarea></div><div><label class="field-label" for="answer-en">英語の模範解答・別解 <span class="required">必須</span></label><textarea class="field-input form-textarea multi-answer-input" id="answer-en" rows="5" placeholder="1行に1つずつ入力&#10;I have lived here for three years.&#10;I've lived here for three years." required></textarea><small class="field-help">1行につき1つ登録できます。先頭の解答が代表解答になります。</small></div></div>
+        <div class="form-two-columns"><div><label class="field-label" for="prompt-en">英語の問題文 <span class="required">必須</span></label><textarea class="field-input form-textarea" id="prompt-en" rows="3" placeholder="例：I have lived here for three years." required></textarea></div><div><label class="field-label" for="answer-ja">日本語の模範解答・別解 <span class="required">必須</span></label><textarea class="field-input form-textarea multi-answer-input" id="answer-ja" rows="5" placeholder="1行に1つずつ入力&#10;私は3年間ここに住んでいます。&#10;私はここに3年間住み続けています。" required></textarea><small class="field-help">1行につき1つ登録できます。先頭の解答が代表解答になります。</small></div></div>
+        <label class="field-label" for="grammar-explanation">文法のポイント・解説 <span class="optional">任意</span></label><textarea class="field-input form-textarea" id="grammar-explanation" rows="2" placeholder="for + 期間で継続期間を表します。"></textarea>
+        <div class="modal-actions"><button type="button" class="secondary-button" data-close="grammar-modal">キャンセル</button><button type="submit" class="primary-button">保存する <span>→</span></button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="modal-card"><div class="modal-header"><div><p class="eyebrow">PREFERENCES</p><h2 id="settings-title">設定・データ</h2></div><button class="icon-button" data-close="settings-modal" aria-label="閉じる">×</button></div>
+      <div class="settings-block"><h3>バックアップ</h3><p class="muted small-text">文法データと学習記録をJSONファイルで保存・復元できます。</p><div class="backup-actions"><button class="secondary-button" id="export-data">JSONを書き出す</button><label class="secondary-button import-button" for="import-file">JSONを読み込む</label><input type="file" id="import-file" accept="application/json,.json" hidden /></div></div>
+      <div class="settings-block danger-zone"><h3>データの初期化</h3><p class="muted small-text">登録した文法と学習記録を削除します。この操作は取り消せません。</p><button class="danger-button" id="reset-data">すべてのデータを削除</button></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
