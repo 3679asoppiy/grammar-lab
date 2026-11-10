@@ -150,6 +150,15 @@ button:disabled{cursor:not-allowed;opacity:.55;transform:none!important;box-shad
   min-height:54px;border:2px solid #242424;border-radius:12px;background:#fff;
   color:#000;font-size:17px;font-weight:800;cursor:pointer;transition:background .15s ease,color .15s ease;
 }
+.grade-choice.grade-correct{border-color:#16a34a;color:#15803d}
+.grade-choice.grade-incorrect{border-color:#dc2626;color:#b91c1c}
+.grade-choice.grade-review{border-color:#2563eb;color:#1d4ed8}
+.grade-choice.grade-correct:hover{background:#f0fdf4}
+.grade-choice.grade-incorrect:hover{background:#fef2f2}
+.grade-choice.grade-review:hover{background:#eff6ff}
+.grade-choice.grade-correct.selected{background:#16a34a;border-color:#16a34a;color:#fff}
+.grade-choice.grade-incorrect.selected{background:#dc2626;border-color:#dc2626;color:#fff}
+.grade-choice.grade-review.selected{background:#2563eb;border-color:#2563eb;color:#fff}
 .grade-choice:hover{background:#f0f1f4}
 .grade-choice:focus-visible{outline:3px solid #6b63d9;outline-offset:3px}
 .grade-choice:disabled{cursor:default;opacity:.65}

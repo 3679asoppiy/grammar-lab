@@ -186,6 +186,10 @@ function revealAnswers(){
 }
 function chooseSelfGrade(outcome){
   if(session.graded)return;
+  if(!session.current || !session.current.item){
+    showToast('現在の問題を確認できません。テストを最初から開始してください。');
+    return;
+  }
   session.graded=true;
   session.total++;
   if(outcome==='correct')session.correct++;
@@ -216,7 +220,21 @@ $('#submit-answer').addEventListener('click',()=>{if(!$('#answer-input').value.t
 
 $('#quit-study').addEventListener('click',()=>{if(confirm('このテストを終了しますか？')){navigate('study');$('#question-panel').classList.add('hidden');$('#study-settings').classList.remove('hidden');}});
 $('#next-question').addEventListener('click',nextQuestion);
-$$('.grade-choice').forEach(button=>button.addEventListener('click',()=>chooseSelfGrade(button.dataset.grade)));
+// Self-grading buttons: delegated handler also supports mobile browsers and replaced DOM nodes.
+document.addEventListener('click',event=>{
+  const button=event.target.closest('.grade-choice');
+  if(!button)return;
+  event.preventDefault();
+  event.stopPropagation();
+  const outcome=button.dataset.grade;
+  if(!['correct','incorrect','review'].includes(outcome))return;
+  try{
+    chooseSelfGrade(outcome);
+  }catch(error){
+    console.error('Self-grade error:',error);
+    showToast('採点の記録に失敗しました。ページを再読み込みしてください。');
+  }
+});
 $('#back-home').addEventListener('click',()=>navigate('home'));
 $('#add-grammar-open').addEventListener('click',()=>openGrammarModal());
 $('[data-action="add-grammar"]').addEventListener('click',()=>openGrammarModal());
